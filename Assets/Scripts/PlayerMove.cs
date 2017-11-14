@@ -7,11 +7,16 @@ public class PlayerMove : MonoBehaviour
 	//Initialize movement variables. These can be edited in the inspector.
 	public float runSpeed = 3.0f;
 	public float jumpForce = 8.0f;
+	public float airMoveForce = 4.0f;
 
 	//For setting up movement. Bool checks if player is touching ground. Our rigidbody is referenced in Start().
 	private Vector3 movement = Vector3.zero;
 	private Rigidbody rb;
 	[SerializeField] private bool grounded = true;
+
+	//These get changed in other scripts. 
+	[HideInInspector] public bool grappling = false;
+	[HideInInspector] public bool paused = false;
 
 	//Used in jumping.
 	private float lastVel = 0.0f;
@@ -75,14 +80,14 @@ public class PlayerMove : MonoBehaviour
 			
 		movement = new Vector3 (moveHorizontal * runSpeed, rb.velocity.y, 0.0f);
 
-		if (grounded)
+		if (grounded && !grappling)
 		{
 			rb.velocity = movement;
 		}
 		else
 		{
 			//Change momentum in the air. Velocity is capped at running speed. 
-			if(rb.velocity.x > 4.0f || rb.velocity.x < -4.0f)
+			if(rb.velocity.x > airMoveForce || rb.velocity.x < -airMoveForce)
 			{
 				rb.velocity = new Vector3(4.0f * facing, rb.velocity.y, rb.velocity.z);
 			}
