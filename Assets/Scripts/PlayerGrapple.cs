@@ -29,12 +29,15 @@ public class PlayerGrapple : MonoBehaviour
 	public LineRenderer render;
 	public GameObject lineRender;
 	RaycastHit hit;
+	public Gradient registeredGrad;
+	public Gradient unregisteredGrad;
 
 	//Now the grapple rope itself.
 	public LineRenderer ropeRender;
 	public GameObject ropeLineRender;
 	private bool latchActive = false;
 	public PlayerMove moveScript;
+
 
 
 	//      MUSH DETECTED
@@ -77,14 +80,18 @@ public class PlayerGrapple : MonoBehaviour
 				if (hit.transform.gameObject.tag == "Tether")
 				{
 					mushDetected = true;
+					render.colorGradient = registeredGrad;
+
 				}
 				else
 				{
 					mushDetected = false;
+					render.colorGradient = unregisteredGrad;
 				}
 			}
 			else
 			{
+				render.colorGradient = unregisteredGrad;
 				mushDetected = false;
 			}
 
@@ -102,6 +109,7 @@ public class PlayerGrapple : MonoBehaviour
 			//If the right stick isn't being touched, all these are false! Stop drawing that line!
 			isAiming = false;
 			lineRender.SetActive(false);
+			render.colorGradient = unregisteredGrad;
 			if (!isGrappling)
 			{
 				mushDetected = false;

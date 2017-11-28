@@ -155,10 +155,11 @@
 -define:UNITY_EDITOR_WIN
 -define:ENABLE_NATIVE_ARRAY_CHECKS
 -define:UNITY_TEAM_LICENSE
+Assets/Scripts/Pause.cs
 Assets/Scripts/PlayerGrapple.cs
 Assets/Scripts/PlayerHang.cs
-Assets/Scripts/PlayerHang1.cs
 Assets/Scripts/PlayerMove.cs
+Assets/Scripts/RoomTransition.cs
 Assets/Scripts/WorldShift.cs
 -r:"D:\Program Files\Unity\Editor\Data\Mono\lib\mono\unity\System.Runtime.Serialization.dll"
 -r:"D:\Program Files\Unity\Editor\Data\Mono\lib\mono\unity\System.Xml.Linq.dll"
