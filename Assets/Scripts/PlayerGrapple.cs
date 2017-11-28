@@ -14,8 +14,8 @@ public class PlayerGrapple : MonoBehaviour
 	//Prep our input names.
 	private float rsVert;
 	private float rsHoriz;
-	private float xboxRTOld;
-	private float xboxRTNew;
+	private float xboxLT;
+	private float xboxRT;
 	private bool xboxB;
 
 	//We deal with a whole bunch of angle stuff here.
@@ -51,8 +51,8 @@ public class PlayerGrapple : MonoBehaviour
 		//Set up all of our inputs that we need, so we don't need to keep using this command.
 		rsVert = Input.GetAxisRaw ("XboxRSVertical") * -1;
 		rsHoriz = Input.GetAxisRaw ("XboxRSHorizontal");
-		xboxRTOld = Input.GetAxisRaw ("XboxTriggers");
-		xboxRTNew = Input.GetAxisRaw ("XboxRT");
+		xboxLT = Input.GetAxisRaw ("XboxLT");
+		xboxRT = Input.GetAxisRaw ("XboxRT");
 		xboxB = Input.GetButton ("XboxB");
 
 
@@ -89,7 +89,7 @@ public class PlayerGrapple : MonoBehaviour
 			}
 
 			//When trigger is pulled and we can grapple, set the timer to grapple again, and Grapple().
-			if (xboxRTNew > 0 && canGrapple == true)
+			if (xboxRT > 0 && canGrapple == true)
 			{
 				canGrapple = false;
 				toAim = aimTimeTarget + Time.time;
@@ -151,7 +151,7 @@ public class PlayerGrapple : MonoBehaviour
 
 
 		//Once the trigger is released, we kill the grapple, essentially.
-		if (xboxRTNew <= 0)
+		if (xboxRT <= 0 || xboxLT > 0)
 		{
 			moveScript.grappling = false;
 			isGrappling = false;
