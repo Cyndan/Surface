@@ -28,6 +28,7 @@ public class PlayerMove : MonoBehaviour
 
 	//What direction is the player facing? -1 is left, 1 is right.
 	private int facing = 1;
+	private int lastFace = 1;
 
 	void Start ()
 	{
