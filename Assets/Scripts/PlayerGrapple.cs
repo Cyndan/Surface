@@ -5,26 +5,40 @@ using UnityEngine;
 public class PlayerGrapple : MonoBehaviour 
 {
 	//Set states for whether we are mid-grapple or mid-aim. Also the force to apply for our swing and max grapple distance.
-	private bool isGrappling = false;
+	[SerializeField] private bool isGrappling = false;
 	private bool isAiming = false;
-	public float swingForce = 12.0f;
 	public float grappleLength = 10.0f;
+	public float grappleStrength = 8.0f;
+	public float dampen = 3.0f;
 
 	//Prep our input names.
 	private float rsVert;
 	private float rsHoriz;
-	private float xboxRT;
+	private float xboxRTOld;
+	private float xboxRTNew;
 	private bool xboxB;
 
 	//We deal with a whole bunch of angle stuff here.
-	private float aimAngle = 0;
+	//private float aimAngle = 0;
 	private Vector3 aimVector;
 	private float aimTimeTarget = 1.0f;
 	private float toAim = 0.0f;
-	private bool canGrapple;
+	private bool canGrapple = true;
+
+	//Grapple aim renderer!
+	public LineRenderer render;
+	public GameObject lineRender;
+	RaycastHit hit;
+
+	//Now the grapple rope itself.
+	public LineRenderer ropeRender;
+	public GameObject ropeLineRender;
+	private bool latchActive = false;
+	public PlayerMove moveScript;
+
 
 	//      MUSH DETECTED
-	private bool mushDetected = false;
+	[SerializeField] private bool mushDetected = false;
 
 	void Start () 
 	{
@@ -34,12 +48,13 @@ public class PlayerGrapple : MonoBehaviour
 
 	void Update () 
 	{
-		//Set up all of our inputs that we need, so we don't need to keep using this command. Also Raycast bullshit.
-		rsVert = Input.GetAxisRaw ("XboxRSHorizontal");
-		rsHoriz = Input.GetAxisRaw ("XboxRSVertical");
-		xboxRT = Input.GetAxisRaw ("XboxTriggers");
-		xboxB = Input.GetButtonDown ("XboxB");
-		RaycastHit hit;
+		//Set up all of our inputs that we need, so we don't need to keep using this command.
+		rsVert = Input.GetAxisRaw ("XboxRSVertical") * -1;
+		rsHoriz = Input.GetAxisRaw ("XboxRSHorizontal");
+		xboxRTOld = Input.GetAxisRaw ("XboxTriggers");
+		xboxRTNew = Input.GetAxisRaw ("XboxRT");
+		xboxB = Input.GetButton ("XboxB");
+
 
 		//After amount of time defined in "aimTimeTarget," we can grapple again.
 		if (Time.time > toAim)
@@ -48,16 +63,18 @@ public class PlayerGrapple : MonoBehaviour
 		}
 
 		//If our right stick is moved at all and we are not grappling, we grab our angle.
-		if (rsVert != 0 || rsHoriz != 0 && !isGrappling)
+		if ((rsVert != 0 || rsHoriz != 0) && !isGrappling)
 		{
 			isAiming = true;
-			aimAngle = Mathf.Atan2(rsHoriz, rsVert) * Mathf.Rad2Deg;
-			aimVector = new Vector3(0, 0, aimAngle);
+			//aimAngle = Mathf.Atan2(rsHoriz, rsVert) * Mathf.Rad2Deg;
+			aimVector = new Vector3(rsHoriz, rsVert, 0);
+			GrappleAim();
 
-			//Since we're aiming, let's also perform our Raycast. IS MUSH DETECTED?!
+			//Since we're aiming, let's also perform our Raycast. MushD set to false when raycast is not being performed,
+			//and when the tag is not "Tether."
 			if (Physics.Raycast(transform.position, aimVector, out hit, grappleLength))
 			{
-				if (hit.transform.tag == "Tether")
+				if (hit.transform.gameObject.tag == "Tether")
 				{
 					mushDetected = true;
 				}
@@ -66,31 +83,109 @@ public class PlayerGrapple : MonoBehaviour
 					mushDetected = false;
 				}
 			}
+			else
+			{
+				mushDetected = false;
+			}
 
-
-			if (xboxRT > 0 && canGrapple == true)
+			//When trigger is pulled and we can grapple, set the timer to grapple again, and Grapple().
+			if (xboxRTNew > 0 && canGrapple == true)
 			{
 				canGrapple = false;
 				toAim = aimTimeTarget + Time.time;
 				Grapple();
+				lineRender.SetActive(false);
 			}
 		}
 		else
 		{
+			//If the right stick isn't being touched, all these are false! Stop drawing that line!
 			isAiming = false;
-			mushDetected = false;
+			lineRender.SetActive(false);
+			if (!isGrappling)
+			{
+				mushDetected = false;
+			}
 		}
-			
+
+		if (isGrappling)
+		{
+			mushDetected = true;
+			Grapple();
+		}
 
 	}
 
 	void Grapple()
 	{
-		isGrappling = true;
+		//Name the springjoint initially.
+		SpringJoint spring = gameObject.GetComponent<SpringJoint>();
+
+		//If we grapple and mushDetected, then we render the grapple, set its points, and set some bools.
+		//If that's the case and we press B, we add a force toward the grapple location.
+		if (mushDetected)
+		{
+			ropeLineRender.SetActive(true);
+			ropeRender.SetPosition(1, gameObject.transform.position);
+			ropeRender.SetPosition(0, hit.point);
+			ropeLineRender.transform.position = hit.point;
+			isGrappling = true;
+			moveScript.grappling = true;
+			moveScript.launched = true;
+
+			//If we haven't done this yet, we fiddle with our springjoint.
+			if (latchActive == false)
+			{
+				spring.connectedAnchor = hit.point;
+				spring.spring = grappleStrength;
+				spring.damper = dampen;
+				latchActive = true;
+			}
+
+			if (xboxB)
+			{
+				gameObject.GetComponent<Rigidbody>().AddForce((hit.point - gameObject.transform.position) * 24f, ForceMode.Force);
+			}
+		}
+
+
+
+		//Once the trigger is released, we kill the grapple, essentially.
+		if (xboxRTNew <= 0)
+		{
+			moveScript.grappling = false;
+			isGrappling = false;
+			ropeLineRender.SetActive(false);
+			spring.spring = 0f;
+			spring.damper = 0.0f;
+			latchActive = false;
+		}
+
 	}
 
 	void GrappleAim()
 	{
+		 
+		if (canGrapple == true)
+		{
+			//If we are able to grapple, we render our line. Point 0 is set to the player, and point 1 is either
+			//where our Raycast lands, or wherever we're aiming.
+			lineRender.SetActive(true);
+			render.SetPosition(0, gameObject.transform.position);
+			if (Physics.Raycast(transform.position, aimVector, out hit, grappleLength))
+			{
+				render.SetPosition(1, hit.point);
+				if (mushDetected)
+				{
+					//change color, here
+				}
+			}
+			else 
+			{
+				render.SetPosition(1, (aimVector * 6) + gameObject.transform.position);
+			}
+
+		}
 
 	}
 }
