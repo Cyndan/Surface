@@ -37,6 +37,7 @@ public class PlayerGrapple : MonoBehaviour
 	public GameObject ropeLineRender;
 	private bool latchActive = false;
 	public PlayerMove moveScript;
+	public Pause pauseScript;
 
 
 
@@ -159,7 +160,7 @@ public class PlayerGrapple : MonoBehaviour
 
 
 		//Once the trigger is released, we kill the grapple, essentially.
-		if (xboxRT <= 0 || xboxLT > 0)
+		if ((xboxRT <= 0 || xboxLT > 0) && pauseScript.paused == false)
 		{
 			moveScript.grappling = false;
 			isGrappling = false;

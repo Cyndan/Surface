@@ -38,42 +38,45 @@ public class PlayerMove : MonoBehaviour
 
 	void Update () 
 	{
-		//If the player is touching the ground, enable jumping. In all cases, they can move.
-		Movement();
-		if (grounded == true)
+		if (!paused)
 		{
-			Jump();
-		}
-			
-		//If the player isn't moving vertically, they are grounded and no longer launched. Else, they are not grounded. 
-		//This also checks if the last velocity was negative or 0, to prevent jumping again at the peak of a jump.
-		if(rb.velocity.y > -0.07 && rb.velocity.y < 0.07 && lastVel <= 0) 
-		{
-			grounded = true;
-		}
-		else
-		{
-			grounded = false;
-		}
+			//If the player is touching the ground, enable jumping. In all cases, they can move.
+			Movement();
+			if (grounded == true)
+			{
+				Jump();
+			}
+				
+			//If the player isn't moving vertically, they are grounded and no longer launched. Else, they are not grounded. 
+			//This also checks if the last velocity was negative or 0, to prevent jumping again at the peak of a jump.
+			if(rb.velocity.y > -0.07 && rb.velocity.y < 0.07 && lastVel <= 0) 
+			{
+				grounded = true;
+			}
+			else
+			{
+				grounded = false;
+			}
 
-		//If the player's lateral velocity dips within runspeed (and aren't grappling), they are no longer launched.
-		if (rb.velocity.x < airMoveForce && rb.velocity.x > -airMoveForce && grappling == false)
-		{
-			launched = false;
-		}
+			//If the player's lateral velocity dips within runspeed (and aren't grappling), they are no longer launched.
+			if (rb.velocity.x < airMoveForce && rb.velocity.x > -airMoveForce && grappling == false)
+			{
+				launched = false;
+			}
 
-		if (rb.velocity.x > 0)
-		{
-			facing = 1;
-		}
-		else if (rb.velocity.x < 0)
-		{
-			facing = -1;
-		}
+			if (rb.velocity.x > 0)
+			{
+				facing = 1;
+			}
+			else if (rb.velocity.x < 0)
+			{
+				facing = -1;
+			}
 
-		//This must be the last line in Update(). This keeps track of the last frame of velocity.
-		lastVel = rb.velocity.y;
-		lastVelX = rb.velocity.x;
+			//This must be the last line in Update(). This keeps track of the last frame of velocity.
+			lastVel = rb.velocity.y;
+			lastVelX = rb.velocity.x;
+		}
 	}
 
 	void Jump()
