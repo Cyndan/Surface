@@ -37,6 +37,7 @@ public class PlayerGrapple : MonoBehaviour
 	public GameObject ropeLineRender;
 	private bool latchActive = false;
 	public PlayerMove moveScript;
+	public Pause pauseScript;
 
 
 
