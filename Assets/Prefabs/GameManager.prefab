@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4344361724976908}
   - component: {fileID: 114604768629399928}
+  - component: {fileID: 114445284735707666}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: GameController
@@ -40,6 +41,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114445284735707666
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1378683466305618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3f50331db804534294457d11c1ccdeb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
 --- !u!114 &114604768629399928
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -52,5 +65,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  xboxStart: 0
   paused: 0
