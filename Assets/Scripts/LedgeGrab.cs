@@ -8,6 +8,8 @@ public class LedgeGrab : MonoBehaviour {
 	public Transform startMarker;
 	public Transform endMarker;
 
+	public GameObject Player;
+
 	private Rigidbody rb;
 
 	private bool grounded = true;
@@ -46,7 +48,7 @@ public class LedgeGrab : MonoBehaviour {
 		if (grounded == false) {
 			float distCovered = (Time.time - startTime) * ledgeSpeed;
 			float fracJourney = distCovered / journeyLength;
-			transform.position = Vector3.Slerp (startMarker.position, endMarker.position, fracJourney);
+			Player.transform.position = Vector3.Slerp (startMarker.position, endMarker.position, fracJourney);
 			Debug.Log ("Hope this worked");
 		} else {
 			return;
