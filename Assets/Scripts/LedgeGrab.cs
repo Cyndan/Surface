@@ -7,12 +7,13 @@ public class LedgeGrab : MonoBehaviour {
 
 	public Transform startMarker;
 	public Transform endMarker;
+	public Transform hangPosition;
 
 	public GameObject Player;
 
 	private Rigidbody rb;
 
-	private bool grounded = true;
+	public bool grounded = true;
 
 	public float ledgeSpeed = 4.0f;
 
@@ -25,7 +26,7 @@ public class LedgeGrab : MonoBehaviour {
 	void Start () {
 		startTime = Time.time;
 		journeyLength = Vector3.Distance (startMarker.position, endMarker.position);
-		rb = gameObject.GetComponent<Rigidbody>();
+		rb = Player.GetComponent<Rigidbody>();
 	}
 	
 	// Update is called once per frame
@@ -42,16 +43,30 @@ public class LedgeGrab : MonoBehaviour {
 		}
 
 		lastVel = rb.velocity.y;
+
+		if (grounded == true && Input.GetButtonDown ("XboxA") == true && ledge.enabled == true) {
+			StartCoroutine (hangTime ());
+			Debug.Log ("Hope this worked");
+		}
 	}
 
-	void OnTriggerEnter (Collider ledge) {
+	void OnTriggerStay (Collider ledge) {
 		if (grounded == false) {
 			float distCovered = (Time.time - startTime) * ledgeSpeed;
 			float fracJourney = distCovered / journeyLength;
-			Player.transform.position = Vector3.Slerp (startMarker.position, endMarker.position, fracJourney);
-			Debug.Log ("Hope this worked");
+			Player.transform.position = Vector3.Lerp (startMarker.position, hangPosition.position, fracJourney);
+			rb.constraints = RigidbodyConstraints.FreezePosition;
+			grounded = true;
 		} else {
 			return;
 		}
+	}
+
+	IEnumerator hangTime() {
+		ledge.enabled = false;
+		rb.constraints = RigidbodyConstraints.None;
+		rb.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionZ;
+		yield return new WaitForSeconds (0.75f);
+		ledge.enabled = true;
 	}
 }
