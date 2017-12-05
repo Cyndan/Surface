@@ -1,16 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Pause : MonoBehaviour 
 {
 	public GameObject player;
-	public GameObject model;
-	public Transform neededRot;
+	//public GameObject model;
+	//public Transform neededRot;
 	private bool xboxStart;
 	public bool paused = false;
 	public GameObject pauseHud;
 
+	//For fading the title screen.
+	private float titleFadeDur = 5.0f;
+	private float startTime;
+	private bool fadingScreen;
+	public Image titleSprite;
+	public AudioSource sound;
 
 	private bool titleScreen = true;
 	public GameObject titleHud;
@@ -22,10 +29,10 @@ public class Pause : MonoBehaviour
 	public AudioClip normalbgm;
 	public AudioClip titlebgm;
 
+	//For fading audio.
 	private float fadeValue = 0.05f;
 	private float fadeSpeed = 0.1f;
 	private float fadeTarget = 0.65f;
-
 	private bool fadingIn = false;
 	private bool fadingOut = false;
 
@@ -64,21 +71,30 @@ public class Pause : MonoBehaviour
 
 		if (titleScreen == true && xboxStart)
 		{
+			sound.Play();
 			player.GetComponent<PlayerMove>().paused = false;
 			titleScreen = false;
-			titleHud.SetActive(false);
+			//titleHud.SetActive(false);
 			fadingOut = true;
-			anim.SetTrigger("GetUp");
+			//anim.SetTrigger("GetUp");
+
+			startTime = Time.time;
+			fadingScreen = true;
 		}
 
-		//Play this once we finish our get up animation to start the game.
+		if (fadingScreen)
+		{
+			ScreenFade();
+		}
+
+		/*//Play this once we finish our get up animation to start the game.
 		if (animFinished)
 		{
 			player.GetComponent<PlayerMove>().paused = false;
 			model.GetComponent<Animator>().SetTrigger("Risen");
 			//model.transform.rotation = neededRot.rotation;
 			animFinished = false;
-		}
+		}*/
 
 
 		//AudioClip stuff.
@@ -110,5 +126,11 @@ public class Pause : MonoBehaviour
 			bgmObject.volume = fadeTarget;
 			fadingIn = false;
 		}
+	}
+
+	void ScreenFade()
+	{
+		float t = (Time.time - startTime) / titleFadeDur;
+		titleSprite.color = new Color(1f,1f,1f,Mathf.SmoothStep(1F, 0F, t));
 	}
 }

@@ -6,7 +6,7 @@ public class PlayerGrapple : MonoBehaviour
 {
 	//Set states for whether we are mid-grapple or mid-aim. Also the force to apply for our swing and max grapple distance.
 	[SerializeField] private bool isGrappling = false;
-	private bool isAiming = false;
+	//private bool isAiming = false;
 	public float grappleLength = 10.0f;
 	public float grappleStrength = 8.0f;
 	public float dampen = 3.0f;
@@ -70,7 +70,7 @@ public class PlayerGrapple : MonoBehaviour
 		//If our right stick is moved at all and we are not grappling, we grab our angle.
 		if ((rsVert != 0 || rsHoriz != 0) && !isGrappling)
 		{
-			isAiming = true;
+			//isAiming = true;
 			//aimAngle = Mathf.Atan2(rsHoriz, rsVert) * Mathf.Rad2Deg;
 			aimVector = new Vector3(rsHoriz, rsVert, 0);
 			GrappleAim();
@@ -109,7 +109,7 @@ public class PlayerGrapple : MonoBehaviour
 		else
 		{
 			//If the right stick isn't being touched, all these are false! Stop drawing that line!
-			isAiming = false;
+			//isAiming = false;
 			lineRender.SetActive(false);
 			render.colorGradient = unregisteredGrad;
 			if (!isGrappling)

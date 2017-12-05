@@ -9,6 +9,10 @@ public class PlayerMove : MonoBehaviour
 	public float jumpForce = 8.0f;
 	public float airMoveForce = 4.0f;
 
+	//Audio
+	public AudioSource source;
+	public AudioClip landingSound;
+
 	//For setting up movement. Bool checks if player is touching ground or launched by grapple. Our rigidbody is referenced in Start().
 	//Launched must be public, as it is accessed by PlayerGrapple.cs
 	private Vector3 movement = Vector3.zero;
@@ -25,6 +29,8 @@ public class PlayerMove : MonoBehaviour
 
 	//Used in grappling momentum.
 	private float lastVelX = 0.0f;
+
+	private bool lastGrounded;
 
 	//What direction is the player facing? -1 is left, 1 is right. Grab the model, too.
 	private int facing = 1;
@@ -61,6 +67,12 @@ public class PlayerMove : MonoBehaviour
 				grounded = false;
 			}
 
+			if (grounded && lastVel < -01.3 && !lastGrounded)
+			{
+				source.clip = landingSound;
+				source.Play();
+			}
+
 			//If the player's lateral velocity dips within runspeed (and aren't grappling), they are no longer launched.
 			if (rb.velocity.x < airMoveForce && rb.velocity.x > -airMoveForce && grappling == false)
 			{
@@ -88,6 +100,7 @@ public class PlayerMove : MonoBehaviour
 			lastVel = rb.velocity.y;
 			lastVelX = rb.velocity.x;
 			lastFace = facing;
+			lastGrounded = grounded;
 		}
 	}
 
