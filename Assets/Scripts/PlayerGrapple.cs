@@ -46,7 +46,8 @@ public class PlayerGrapple : MonoBehaviour
 
 	void Start () 
 	{
-		
+		//ropeRender.enabled = true;
+		//render.enabled = true;
 	}
 	
 

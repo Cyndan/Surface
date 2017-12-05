@@ -5,8 +5,8 @@ using UnityEngine;
 public class AbilityManager : MonoBehaviour 
 {
 	public GameObject player;
-	private bool canGrapple = false;
-	private bool canShift = false;
+	public bool canGrapple = false;
+	public bool canShift = false;
 
 
 	void Update () 
@@ -16,22 +16,23 @@ public class AbilityManager : MonoBehaviour
 			player = GameObject.FindWithTag("Player");
 		}
 
-		if (canGrapple == false)
+		if (!canGrapple)
 		{
 			player.GetComponent<PlayerGrapple>().enabled = false;
 		}
-		else if (canGrapple == true)
+		else if (canGrapple)
 		{
 			player.GetComponent<PlayerGrapple>().enabled = true;
 		}
 
-		if (canShift == false)
+		if (!canShift)
 		{
 			player.GetComponent<WorldShift>().enabled = false;
 		}
-		else if (canShift == true)
+		else if (canShift)
 		{
 			player.GetComponent<WorldShift>().enabled = true;
 		}
+
 	}
 }

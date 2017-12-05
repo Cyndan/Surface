@@ -26,9 +26,12 @@ public class PlayerMove : MonoBehaviour
 	//Used in grappling momentum.
 	private float lastVelX = 0.0f;
 
-	//What direction is the player facing? -1 is left, 1 is right.
+	//What direction is the player facing? -1 is left, 1 is right. Grab the model, too.
 	private int facing = 1;
 	private int lastFace = 1;
+	public GameObject model;
+	public Transform faceLeft;
+	public Transform faceRight;
 
 	void Start ()
 	{
@@ -67,15 +70,24 @@ public class PlayerMove : MonoBehaviour
 			if (rb.velocity.x > 0)
 			{
 				facing = 1;
+				if (lastFace == -1)
+				{
+					model.transform.rotation = Quaternion.Slerp(faceLeft.rotation, faceRight.rotation, 1f);
+				}
 			}
 			else if (rb.velocity.x < 0)
 			{
 				facing = -1;
+				if (lastFace == 1)
+				{
+					model.transform.rotation = Quaternion.Slerp(faceRight.rotation, faceLeft.rotation, 1f);
+				}
 			}
 
 			//This must be the last line in Update(). This keeps track of the last frame of velocity.
 			lastVel = rb.velocity.y;
 			lastVelX = rb.velocity.x;
+			lastFace = facing;
 		}
 	}
 

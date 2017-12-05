@@ -8,7 +8,7 @@ public class LedgeGrab : MonoBehaviour {
 	public Transform startMarker;
 	public Transform endMarker;
 
-	public Rigidbody rb;
+	private Rigidbody rb;
 
 	private bool grounded = true;
 
@@ -23,6 +23,7 @@ public class LedgeGrab : MonoBehaviour {
 	void Start () {
 		startTime = Time.time;
 		journeyLength = Vector3.Distance (startMarker.position, endMarker.position);
+		rb = gameObject.GetComponent<Rigidbody>();
 	}
 	
 	// Update is called once per frame
