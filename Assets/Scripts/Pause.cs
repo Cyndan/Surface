@@ -5,8 +5,6 @@ using UnityEngine;
 public class Pause : MonoBehaviour 
 {
 	public GameObject player;
-	public GameObject model;
-	public Transform neededRot;
 	private bool xboxStart;
 	public bool paused = false;
 	public GameObject pauseHud;
@@ -14,9 +12,6 @@ public class Pause : MonoBehaviour
 
 	private bool titleScreen = true;
 	public GameObject titleHud;
-	public Animator anim;
-	//public Animation animController;
-	[HideInInspector] public bool animFinished = false;
 
 	public AudioSource bgmObject;
 	public AudioClip normalbgm;
@@ -31,7 +26,6 @@ public class Pause : MonoBehaviour
 
 	void Start () 
 	{
-		//When the game launches, we're set to paused sans the pause screen.
 		player.GetComponent<PlayerMove>().paused = true;
 		pauseHud.SetActive(false);
 	}
@@ -68,20 +62,10 @@ public class Pause : MonoBehaviour
 			titleScreen = false;
 			titleHud.SetActive(false);
 			fadingOut = true;
-			anim.SetTrigger("GetUp");
-		}
-
-		//Play this once we finish our get up animation to start the game.
-		if (animFinished)
-		{
-			player.GetComponent<PlayerMove>().paused = false;
-			model.GetComponent<Animator>().SetTrigger("Risen");
-			//model.transform.rotation = neededRot.rotation;
-			animFinished = false;
 		}
 
 
-		//AudioClip stuff.
+		//AudiClip stuff.
 		if (bgmObject.volume > fadeValue && fadingOut)
 		{
 
