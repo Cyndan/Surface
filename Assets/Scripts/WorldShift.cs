@@ -18,6 +18,10 @@ public class WorldShift : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		//Added by James! For when the player respawns.
+		WorldA = GameObject.FindWithTag("WorldA");
+		WorldB = GameObject.FindWithTag("WorldB");
+
 		//NOTE: This should probably be done in the GameManager.
 		WorldA.SetActive (true);
 		WorldB.SetActive (false);

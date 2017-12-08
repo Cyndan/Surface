@@ -6,11 +6,8 @@ using UnityEngine.UI;
 public class Pause : MonoBehaviour 
 {
 	public GameObject player;
-<<<<<<< HEAD
 	//public GameObject model;
 	//public Transform neededRot;
-=======
->>>>>>> a64a3b70f319fd008cb1fec847fda743341b30b0
 	private bool xboxStart;
 	public bool paused = false;
 	public GameObject pauseHud;
@@ -24,6 +21,9 @@ public class Pause : MonoBehaviour
 
 	private bool titleScreen = true;
 	public GameObject titleHud;
+	public Animator anim;
+	//public Animation animController;
+	[HideInInspector] public bool animFinished = false;
 
 	public AudioSource bgmObject;
 	public AudioClip normalbgm;
@@ -32,12 +32,13 @@ public class Pause : MonoBehaviour
 	//For fading audio.
 	private float fadeValue = 0.05f;
 	private float fadeSpeed = 0.1f;
-	private float fadeTarget = 0.65f;
+	private float fadeTarget = 0.25f;
 	private bool fadingIn = false;
 	private bool fadingOut = false;
 
 	void Start () 
 	{
+		//When the game launches, we're set to paused sans the pause screen.
 		player.GetComponent<PlayerMove>().paused = true;
 		pauseHud.SetActive(false);
 	}
@@ -75,7 +76,6 @@ public class Pause : MonoBehaviour
 			titleScreen = false;
 			//titleHud.SetActive(false);
 			fadingOut = true;
-<<<<<<< HEAD
 			//anim.SetTrigger("GetUp");
 
 			startTime = Time.time;
@@ -95,12 +95,9 @@ public class Pause : MonoBehaviour
 			//model.transform.rotation = neededRot.rotation;
 			animFinished = false;
 		}*/
-=======
-		}
->>>>>>> a64a3b70f319fd008cb1fec847fda743341b30b0
 
 
-		//AudiClip stuff.
+		//AudioClip stuff.
 		if (bgmObject.volume > fadeValue && fadingOut)
 		{
 

@@ -8,7 +8,8 @@ TagManager:
   - Tether
   - Corner
   - Switch
-  - Latch
+  - WorldA
+  - WorldB
   layers:
   - Default
   - TransparentFX
