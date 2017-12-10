@@ -8,6 +8,9 @@ public class PlayerRespawn : MonoBehaviour
 	public GameObject player;
 	public Transform respawnPoint;
 
+	public GameObject worldA;
+	public GameObject worldB;
+
 	[HideInInspector] public int deathCount = 0;
 	private int prevDeathCount;
 
@@ -15,10 +18,13 @@ public class PlayerRespawn : MonoBehaviour
 	private float toResp = 0.0f;
 	private bool respawning = false;
 
-	public GameObject playerObject;
+	public GameObject playerPrefab;
+	public AudioClip meow;
 
-	void Start ()
+	void Awake ()
 	{
+		//worldA = GameObject.FindWithTag("WorldA");
+		//worldB = GameObject.FindWithTag("WorldB");
 	}
 
 	void Update () 
@@ -28,12 +34,19 @@ public class PlayerRespawn : MonoBehaviour
 			player = GameObject.FindWithTag("Player");
 		}
 
+		if (player != null)
+		{
+			player.GetComponent<WorldShift>().WorldA = worldA;
+			player.GetComponent<WorldShift>().WorldB = worldB;
+		}
+
 		if (deathCount > prevDeathCount && !respawning)
 		{
-			respawning = true;
 			toResp = Time.time + respTime;
+			gameObject.GetComponent<AudioSource>().clip = meow;
 			gameObject.GetComponent<AudioSource>().Play();
 			Respawn();
+			respawning = true;
 		}
 
 		if (respawning)
@@ -49,7 +62,7 @@ public class PlayerRespawn : MonoBehaviour
 		if (Time.time >= toResp)
 		{
 			Debug.Log("Death count: " + deathCount);
-			Instantiate(playerObject, respawnPoint.position, respawnPoint.rotation, gameObject.transform);
+			Instantiate(playerPrefab, respawnPoint.position, respawnPoint.rotation, gameObject.transform);
 			respawning = false;
 		}
 	}

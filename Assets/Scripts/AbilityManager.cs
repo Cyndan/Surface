@@ -11,6 +11,8 @@ public class AbilityManager : MonoBehaviour
 
 	public Image shiftUI;
 	public Image grappleUI;
+	[HideInInspector] public float shiftBar;
+	[HideInInspector] public float grappleBar;
 
 	public Sprite shift0;
 	public Sprite shift1;
@@ -19,6 +21,7 @@ public class AbilityManager : MonoBehaviour
 	public Sprite shift4;
 	public Sprite shift5;
 	public Sprite shift6;
+	public Sprite shift7;
 	public Sprite shiftFull;
 
 	public Sprite grab0;
@@ -28,11 +31,18 @@ public class AbilityManager : MonoBehaviour
 	public Sprite grab4;
 	public Sprite grab5;
 	public Sprite grab6;
+	public Sprite grab7;
 	public Sprite grabFull;
 
+	public Image flash;
+	private float fadeDur = 0.75f;
+	[HideInInspector] public float startTime;
+	private bool flashDown;
+	private bool flashing;
+	//public AudioClip flashSound;
 
 	void Update () 
-	{
+	{ 
 		if (GameObject.FindWithTag("Player") == false || player == null)
 		{
 			player = GameObject.FindWithTag("Player");
@@ -62,7 +72,115 @@ public class AbilityManager : MonoBehaviour
 				shiftUI.enabled = true;
 			}
 		}
+		if (flashing)
+		{
+			Flash();
+		}
+		UIBar();
+	}
 
+	public void Flash()
+	{
+		if (!flashDown)
+		{
+			float t = (Time.time - startTime) / (fadeDur * 0.05f);
+			flashing = true;
+			flash.color = new Color(1f,1f,1f,Mathf.SmoothStep(0F, 1F, t));
+			if (Time.time > startTime + (fadeDur * 0.05f))
+			{
+				startTime = Time.time;
+				flashDown = true;
+			}
+		}
+		else
+		{
+			float t = (Time.time - startTime) / fadeDur;
+			flash.color = new Color(1f,1f,1f,Mathf.SmoothStep(1F, 0F, t));
+			if (Time.time > startTime + fadeDur)
+			{
+				flashDown = false;
+				flashing = false;
+			}
+		}
+	}
+
+	void UIBar()
+	{
+		if (Time.time > shiftBar)
+		{
+			shiftUI.sprite = shiftFull;
+		}
+		else if (((shiftBar- Time.time) / 1.0f ) <= 0.125f)
+		{
+			shiftUI.sprite = shift0;
+		}
+		else if (((shiftBar- Time.time) / 1.0f ) <= 0.25f)
+		{
+			shiftUI.sprite = shift1;
+		}
+		else if (((shiftBar- Time.time) / 1.0f ) <= 0.375f)
+		{
+			shiftUI.sprite = shift2;
+		}
+		else if (((shiftBar- Time.time) / 1.0f ) <= 0.5f)
+		{
+			shiftUI.sprite = shift3;
+		}
+		else if (((shiftBar- Time.time) / 1.0f ) <= 0.625f)
+		{
+			shiftUI.sprite = shift4;
+		}
+		else if (((shiftBar- Time.time) / 1.0f ) <= 0.75f)
+		{
+			shiftUI.sprite = shift5;
+		}
+		else if (((shiftBar- Time.time) / 1.0f ) <= 0.875f)
+		{
+			shiftUI.sprite = shift6;
+		}
+		else if (((shiftBar- Time.time) / 1.0f ) <= 1.0f)
+		{
+			shiftUI.sprite = shift7;
+		}
+
+
+		if (Time.time > grappleBar)
+		{
+			grappleUI.sprite = grabFull;
+		}
+		else if (((grappleBar - Time.time) / 1.0f ) <= 0.125f)
+		{
+			grappleUI.sprite = grab0;
+		}
+		else if (((grappleBar - Time.time) / 1.0f ) <= 0.25f)
+		{
+			grappleUI.sprite = grab1;
+		}
+		else if (((grappleBar - Time.time) / 1.0f ) <= 0.375f)
+		{
+			grappleUI.sprite = grab2;
+		}
+		else if (((grappleBar - Time.time) / 1.0f ) <= 0.5f)
+		{
+			grappleUI.sprite = grab3;
+		}
+		else if (((grappleBar - Time.time) / 1.0f ) <= 0.625f)
+		{
+			grappleUI.sprite = grab4;
+		}
+		else if (((grappleBar - Time.time) / 1.0f ) <= 0.75f)
+		{
+			grappleUI.sprite = grab5;
+		}
+		else if (((grappleBar - Time.time) / 1.0f ) <= 0.875f)
+		{
+			grappleUI.sprite = grab6;
+		}
+		else if (((grappleBar - Time.time) / 1.0f ) <= 1.0f)
+		{
+			grappleUI.sprite = grab7;
+		}
 
 	}
+
 }

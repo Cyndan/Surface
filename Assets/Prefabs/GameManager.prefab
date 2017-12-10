@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 114445284735707666}
   - component: {fileID: 81835037008026292}
   - component: {fileID: 114642687473706296}
+  - component: {fileID: 82035409772756182}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: GameController
@@ -37,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1378683466305618}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.78, z: -10.13}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -50,6 +51,86 @@ AudioListener:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1378683466305618}
   m_Enabled: 1
+--- !u!82 &82035409772756182
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1378683466305618}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: f02ec4bfdd04e444aaf9aff2e7313414, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 0.8
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 160
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!114 &114445284735707666
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -63,7 +144,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   canGrapple: 0
-  canShift: 0
+  canShift: 1
+  shiftUI: {fileID: 0}
+  grappleUI: {fileID: 0}
+  shiftBar: 0
+  grappleBar: 0
+  shift0: {fileID: 21300018, guid: 5b30c1338f5070141ac6683d9e317fc1, type: 3}
+  shift1: {fileID: 21300020, guid: 5b30c1338f5070141ac6683d9e317fc1, type: 3}
+  shift2: {fileID: 21300022, guid: 5b30c1338f5070141ac6683d9e317fc1, type: 3}
+  shift3: {fileID: 21300024, guid: 5b30c1338f5070141ac6683d9e317fc1, type: 3}
+  shift4: {fileID: 21300026, guid: 5b30c1338f5070141ac6683d9e317fc1, type: 3}
+  shift5: {fileID: 21300028, guid: 5b30c1338f5070141ac6683d9e317fc1, type: 3}
+  shift6: {fileID: 21300030, guid: 5b30c1338f5070141ac6683d9e317fc1, type: 3}
+  shift7: {fileID: 21300032, guid: 5b30c1338f5070141ac6683d9e317fc1, type: 3}
+  shiftFull: {fileID: 21300034, guid: 5b30c1338f5070141ac6683d9e317fc1, type: 3}
+  grab0: {fileID: 21300000, guid: 5b30c1338f5070141ac6683d9e317fc1, type: 3}
+  grab1: {fileID: 21300002, guid: 5b30c1338f5070141ac6683d9e317fc1, type: 3}
+  grab2: {fileID: 21300004, guid: 5b30c1338f5070141ac6683d9e317fc1, type: 3}
+  grab3: {fileID: 21300006, guid: 5b30c1338f5070141ac6683d9e317fc1, type: 3}
+  grab4: {fileID: 21300008, guid: 5b30c1338f5070141ac6683d9e317fc1, type: 3}
+  grab5: {fileID: 21300010, guid: 5b30c1338f5070141ac6683d9e317fc1, type: 3}
+  grab6: {fileID: 21300012, guid: 5b30c1338f5070141ac6683d9e317fc1, type: 3}
+  grab7: {fileID: 21300014, guid: 5b30c1338f5070141ac6683d9e317fc1, type: 3}
+  grabFull: {fileID: 21300016, guid: 5b30c1338f5070141ac6683d9e317fc1, type: 3}
+  flash: {fileID: 0}
+  startTime: 0
+  aSource: {fileID: 82035409772756182}
+  flashSound: {fileID: 8300000, guid: 3bab94cbc053a71499a283663392890d, type: 3}
 --- !u!114 &114604768629399928
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -99,6 +206,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   respawnPoint: {fileID: 0}
+  worldA: {fileID: 0}
+  worldB: {fileID: 0}
   deathCount: 0
   respTime: 3
-  playerObject: {fileID: 0}
+  playerPrefab: {fileID: 1336078018686796, guid: 3967326b0f64d2b4eaafe68574dafdf1,
+    type: 2}

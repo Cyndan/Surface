@@ -39,6 +39,8 @@ public class PlayerGrapple : MonoBehaviour
 	public PlayerMove moveScript;
 	public Pause pauseScript;
 
+	public AbilityManager abiMan;
+
 
 
 	//      MUSH DETECTED
@@ -48,6 +50,8 @@ public class PlayerGrapple : MonoBehaviour
 	{
 		//ropeRender.enabled = true;
 		//render.enabled = true;
+
+		abiMan = GameObject.FindGameObjectWithTag("GameController").GetComponent<AbilityManager>();
 	}
 	
 
@@ -60,6 +64,16 @@ public class PlayerGrapple : MonoBehaviour
 		xboxRT = Input.GetAxisRaw ("XboxRT");
 		xboxB = Input.GetButton ("XboxB");
 
+		//If the player respawns...
+		if (GameObject.FindWithTag("Player") == false || moveScript == null)
+		{
+			moveScript = GameObject.FindWithTag("Player").GetComponent<PlayerMove>();
+		}
+
+		if (pauseScript == null)
+		{
+			pauseScript = GameObject.FindWithTag("GameController").GetComponent<Pause>();
+		}
 
 		//After amount of time defined in "aimTimeTarget," we can grapple again.
 		if (Time.time > toAim)
@@ -102,6 +116,7 @@ public class PlayerGrapple : MonoBehaviour
 			{
 				canGrapple = false;
 				toAim = aimTimeTarget + Time.time;
+				abiMan.grappleBar = aimTimeTarget + Time.time;
 				Grapple();
 				lineRender.SetActive(false);
 			}

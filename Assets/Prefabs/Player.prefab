@@ -555,6 +555,7 @@ MonoBehaviour:
   ropeLineRender: {fileID: 1826105051834206}
   moveScript: {fileID: 114116686819740842}
   pauseScript: {fileID: 0}
+  abiMan: {fileID: 0}
   mushDetected: 0
 --- !u!114 &114360643965073564
 MonoBehaviour:
@@ -569,6 +570,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WorldA: {fileID: 0}
   WorldB: {fileID: 0}
+  abiMan: {fileID: 0}
+  flashSound: {fileID: 8300000, guid: 3bab94cbc053a71499a283663392890d, type: 3}
   WorldActive: 1
 --- !u!114 &114705250479268876
 MonoBehaviour:

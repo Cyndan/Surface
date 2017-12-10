@@ -5,12 +5,20 @@ using UnityEngine;
 public class WorldShift : MonoBehaviour {
 
 	public GameObject WorldA;
-
 	public GameObject WorldB;
+
+	public AbilityManager abiMan;
 
 	private float xboxLT;
 
 	private bool triggerPulled = false;
+
+	public AudioClip flashSound;
+
+	//Timer stuff.
+	private float shiftTimer = 1.0f;
+	private float toShift = 0.0f;
+	private bool canShift = true;
 
 	//NOTE: When WorldActive is true, World A is up. When WorldActive is false, World B is up.
 	//There should never be no world up.
@@ -23,9 +31,10 @@ public class WorldShift : MonoBehaviour {
 		WorldB = GameObject.FindWithTag("WorldB");
 
 		//NOTE: This should probably be done in the GameManager.
-		WorldA.SetActive (true);
-		WorldB.SetActive (false);
+		//WorldA.SetActive (true);
+		//WorldB.SetActive (false);
 
+		abiMan = GameObject.FindGameObjectWithTag("GameController").GetComponent<AbilityManager>();
 
 	}
 
@@ -34,8 +43,9 @@ public class WorldShift : MonoBehaviour {
 		xboxLT = Input.GetAxisRaw ("XboxLT");
 
 		//NOTE: Come back here and put Xbox Trigger support in when it doesn't give an error.
-		if ((Input.GetKeyDown(KeyCode.Q) == true || xboxLT > 0) && triggerPulled == false) {
+		if ((Input.GetKeyDown(KeyCode.Q) == true || xboxLT > 0) && triggerPulled == false && canShift) {
 			triggerPulled = true;
+			canShift = false;
 			if (WorldActive == true) {
 				//Debug.Log ("Yeah the first command works");
 				WorldA.SetActive (false);
@@ -49,11 +59,24 @@ public class WorldShift : MonoBehaviour {
 				WorldB.SetActive (false);
 				WorldActive = true;
 			}
+
+			abiMan.startTime = Time.time;
+			abiMan.Flash();
+			toShift = Time.time + shiftTimer;
+			abiMan.shiftBar = Time.time + shiftTimer;
+
+			abiMan.gameObject.GetComponent<AudioSource>().clip = flashSound;
+			abiMan.gameObject.GetComponent<AudioSource>().Play();
 		}
 
 		if (xboxLT == 0)
 		{
 			triggerPulled = false;
+		}
+
+		if (Time.time > toShift)
+		{
+			canShift = true;
 		}
 	}
 
