@@ -30,7 +30,21 @@ public class LedgeGrab : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		startMarker = transform;
+
+		if (GameObject.FindWithTag("Player") == false || Player == null)
+		{
+			Player = GameObject.FindWithTag("Player");
+		}
+		if (rb == null && Player != null)
+		{
+			rb = Player.GetComponent<Rigidbody> ();
+		}
+
+
+		if (startMarker == null)
+		{
+			startMarker = gameObject.transform;
+		}
 
 		if(rb.velocity.y > -0.07 && rb.velocity.y < 0.07 && lastVel <= 0) 
 		{

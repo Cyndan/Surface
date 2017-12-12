@@ -1,13 +1,15 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\AbilityManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\PlayerGrapple.cs">
     <Files>
-      <File FileName="Assets\Scripts\PlayerLife.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\PlayerRespawn.cs" Line="39" Column="24" />
-      <File FileName="Assets\Scripts\WorldShift.cs" Line="69" Column="11" />
-      <File FileName="Assets\Scripts\PlayerGrapple.cs" Line="75" Column="81" />
-      <File FileName="Assets\Scripts\AbilityManager.cs" Line="42" Column="4" />
+      <File FileName="Assets\Scripts\PlayerLife.cs" Line="26" Column="3" />
+      <File FileName="Assets\Scripts\PlayerRespawn.cs" Line="28" Column="3" />
+      <File FileName="Assets\Scripts\WorldShift.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\PlayerGrapple.cs" Line="208" Column="9" />
+      <File FileName="Assets\Scripts\AbilityManager.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Pause.cs" Line="133" Column="52" />
+      <File FileName="Assets\Scripts\LedgeGrab.cs" Line="36" Column="46" />
+      <File FileName="Assets\Scripts\RandomLedgeFace.cs" Line="14" Column="36" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

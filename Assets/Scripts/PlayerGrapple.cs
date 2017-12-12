@@ -207,7 +207,7 @@ public class PlayerGrapple : MonoBehaviour
 			}
 			else 
 			{
-				render.SetPosition(1, (aimVector * 6) + gameObject.transform.position);
+				render.SetPosition(1, (aimVector * 8) + gameObject.transform.position);
 			}
 
 		}

@@ -62,6 +62,7 @@
      <Compile Include="Assets\Scripts\PlayerLife.cs" />
      <Compile Include="Assets\Scripts\PlayerMove.cs" />
      <Compile Include="Assets\Scripts\PlayerRespawn.cs" />
+     <Compile Include="Assets\Scripts\RandomLedgeFace.cs" />
      <Compile Include="Assets\Scripts\RiseandShine.cs" />
      <Compile Include="Assets\Scripts\RoomTransition.cs" />
      <Compile Include="Assets\Scripts\WorldShift.cs" />

@@ -12,6 +12,16 @@ public class PlayerLife : MonoBehaviour
 		respawnScript = GameObject.FindWithTag("GameController").GetComponent<PlayerRespawn>();
 	}
 
+	void Update ()
+	{
+		if (gameObject.transform.position.y < -20.0f && !hit)
+		{
+			hit = true;
+			respawnScript.deathCount++;
+			Destroy(gameObject);
+		}
+	}
+
 	void OnTriggerEnter (Collider other)
 	{
 		if (other.tag == "Hazard" && !hit)
