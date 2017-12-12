@@ -9,7 +9,7 @@ public class RoomTransition : MonoBehaviour {
 
 	public GameObject trigger;
 
-	private bool usedBefore = true;
+	public bool usedBefore = true;
 
 	// Use this for initialization
 	void Start () {
