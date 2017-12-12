@@ -6,6 +6,7 @@ public class RoomTransition : MonoBehaviour {
 
 	public GameObject Room1;
 	public GameObject Room2;
+	public GameObject firstRoom;
 
 	public GameObject trigger;
 
@@ -13,7 +14,7 @@ public class RoomTransition : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		Room1.SetActive(true);
+		firstRoom.SetActive (true);
 		Room2.SetActive (false);
 	}
 	
