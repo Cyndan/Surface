@@ -469,6 +469,8 @@ MonoBehaviour:
   airMoveForce: 4
   source: {fileID: 82083587454833674}
   landingSound: {fileID: 8300000, guid: eef3284b7a33107459bb0fe0f0fb4bd6, type: 3}
+  landingPlants: {fileID: 8300000, guid: 5a95254eee9346b468938ba3d8e3e9a1, type: 3}
+  shift: {fileID: 114360643965073564}
   grounded: 1
   launched: 0
   grappling: 0
@@ -556,6 +558,10 @@ MonoBehaviour:
   moveScript: {fileID: 114116686819740842}
   pauseScript: {fileID: 0}
   abiMan: {fileID: 0}
+  sound: {fileID: 82083587454833674}
+  succTether: {fileID: 8300000, guid: a4d7f23347cd99049a4dc598f9b46e0e, type: 3}
+  failTether: {fileID: 8300000, guid: 39efbebf55668e9409261e643d332881, type: 3}
+  release: {fileID: 8300000, guid: 540bca51c9b9efb47ba52c4906c64698, type: 3}
   mushDetected: 0
 --- !u!114 &114360643965073564
 MonoBehaviour:
