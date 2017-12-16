@@ -41,6 +41,12 @@ public class PlayerGrapple : MonoBehaviour
 
 	public AbilityManager abiMan;
 
+	//Audio
+	public AudioSource sound;
+	public AudioClip succTether;
+	public AudioClip failTether;
+	public AudioClip release;
+
 
 
 	//      MUSH DETECTED
@@ -119,6 +125,16 @@ public class PlayerGrapple : MonoBehaviour
 				abiMan.grappleBar = aimTimeTarget + Time.time;
 				Grapple();
 				lineRender.SetActive(false);
+
+				if (mushDetected)
+				{
+					sound.clip = succTether;
+				}
+				else if (!mushDetected)
+				{
+					sound.clip = failTether;
+				}
+				sound.Play();
 			}
 		}
 		else
@@ -184,6 +200,9 @@ public class PlayerGrapple : MonoBehaviour
 			spring.spring = 0f;
 			spring.damper = 0.0f;
 			latchActive = false;
+
+			sound.clip = release;
+			sound.Play();
 		}
 
 	}

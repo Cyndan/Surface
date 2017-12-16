@@ -12,6 +12,8 @@ public class PlayerMove : MonoBehaviour
 	//Audio
 	public AudioSource source;
 	public AudioClip landingSound;
+	public AudioClip landingPlants;
+	public WorldShift shift;
 
 	//For setting up movement. Bool checks if player is touching ground or launched by grapple. Our rigidbody is referenced in Start().
 	//Launched must be public, as it is accessed by PlayerGrapple.cs
@@ -69,7 +71,14 @@ public class PlayerMove : MonoBehaviour
 
 			if (grounded && lastVel < -01.3 && !lastGrounded)
 			{
-				source.clip = landingSound;
+				if (shift.WorldActive == true)
+				{
+					source.clip = landingSound;
+				}
+				else if (shift.WorldActive == false)
+				{
+					source.clip = landingPlants;
+				}
 				source.Play();
 			}
 
