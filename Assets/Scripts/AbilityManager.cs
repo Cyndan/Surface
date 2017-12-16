@@ -125,10 +125,10 @@ public class AbilityManager : MonoBehaviour
 		}
 		if (!dFlashDown)
 		{
-			float t = (Time.time - startTime) / (darkFadeDur);
+			float t = (Time.time - dStartTime) / (darkFadeDur);
 			dFlashing = true;
 			flash.color = new Color(-1f,-1f,-1f,Mathf.SmoothStep(0F, 1F, t));
-			if (Time.time > startTime + (darkFadeDur + 0.5f))
+			if (Time.time > dStartTime + (darkFadeDur + 0.5f))
 			{
 				startTime = Time.time;
 				dFlashDown = true;
@@ -136,9 +136,9 @@ public class AbilityManager : MonoBehaviour
 		}
 		else
 		{
-			float t = (Time.time - startTime) / (darkFadeDur * 0.33f);
+			float t = (Time.time - dStartTime) / (darkFadeDur * 0.33f);
 			flash.color = new Color(-1f,-1f,-1f,Mathf.SmoothStep(1F, 0F, t));
-			if (Time.time > startTime + (darkFadeDur * 0.33f))
+			if (Time.time > dStartTime + (darkFadeDur * 0.33f))
 			{
 				dFlashDown = false;
 				dFlashing = false;
