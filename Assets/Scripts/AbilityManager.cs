@@ -36,9 +36,13 @@ public class AbilityManager : MonoBehaviour
 
 	public Image flash;
 	private float fadeDur = 0.75f;
-	[HideInInspector] public float startTime;
+	private float darkFadeDur = 2.5f;
+	private float startTime;
+	private float dStartTime;
 	private bool flashDown;
 	private bool flashing;
+	private bool dFlashDown;
+	private bool dFlashing;
 	//public AudioClip flashSound;
 
 	void Update () 
@@ -76,11 +80,20 @@ public class AbilityManager : MonoBehaviour
 		{
 			Flash();
 		}
+		if (dFlashing)
+		{
+			DarkFlash();
+		}
 		UIBar();
 	}
 
 	public void Flash()
 	{
+		if (!flashing)
+		{
+			startTime = Time.time;
+		}
+
 		if (!flashDown)
 		{
 			float t = (Time.time - startTime) / (fadeDur * 0.05f);
@@ -100,6 +113,35 @@ public class AbilityManager : MonoBehaviour
 			{
 				flashDown = false;
 				flashing = false;
+			}
+		}
+	}
+
+	public void DarkFlash()
+	{
+		if (!dFlashing)
+		{
+			dStartTime = Time.time;
+		}
+		if (!dFlashDown)
+		{
+			float t = (Time.time - startTime) / (darkFadeDur);
+			dFlashing = true;
+			flash.color = new Color(-1f,-1f,-1f,Mathf.SmoothStep(0F, 1F, t));
+			if (Time.time > startTime + (darkFadeDur + 0.5f))
+			{
+				startTime = Time.time;
+				dFlashDown = true;
+			}
+		}
+		else
+		{
+			float t = (Time.time - startTime) / (darkFadeDur * 0.33f);
+			flash.color = new Color(-1f,-1f,-1f,Mathf.SmoothStep(1F, 0F, t));
+			if (Time.time > startTime + (darkFadeDur * 0.33f))
+			{
+				dFlashDown = false;
+				dFlashing = false;
 			}
 		}
 	}

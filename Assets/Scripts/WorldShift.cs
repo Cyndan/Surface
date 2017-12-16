@@ -59,8 +59,7 @@ public class WorldShift : MonoBehaviour {
 				WorldB.SetActive (false);
 				WorldActive = true;
 			}
-
-			abiMan.startTime = Time.time;
+				
 			abiMan.Flash();
 			toShift = Time.time + shiftTimer;
 			abiMan.shiftBar = Time.time + shiftTimer;

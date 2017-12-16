@@ -45,6 +45,7 @@ public class PlayerRespawn : MonoBehaviour
 			toResp = Time.time + respTime;
 			gameObject.GetComponent<AudioSource>().clip = meow;
 			gameObject.GetComponent<AudioSource>().Play();
+			gameObject.GetComponent<AbilityManager>().DarkFlash();
 			Respawn();
 			respawning = true;
 		}
