@@ -2926,12 +2926,12 @@ MonoBehaviour:
   landingSound: {fileID: 8300000, guid: eef3284b7a33107459bb0fe0f0fb4bd6, type: 3}
   landingPlants: {fileID: 8300000, guid: 5a95254eee9346b468938ba3d8e3e9a1, type: 3}
   shift: {fileID: 114360643965073564}
-  anim: {fileID: 0}
+  anim: {fileID: 95696048189586788}
   grounded: 1
   launched: 0
   grappling: 0
   paused: 0
-  model: {fileID: 1420539167706386}
+  model: {fileID: 1269986940552576}
   faceLeft: {fileID: 4680677290471372}
   faceRight: {fileID: 4743950260820562}
 --- !u!114 &114335205402613814

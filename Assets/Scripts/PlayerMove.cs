@@ -67,13 +67,11 @@ public class PlayerMove : MonoBehaviour
 			{
 				grounded = true;
 				anim.SetBool("Falling", false);
-				Debug.Log("landed");
 			}
 			else
 			{
 				grounded = false;
 				anim.SetBool("Falling", true);
-				Debug.Log("falling");
 			}
 
 			if (grounded && lastVel < -1.3 && !lastGrounded)

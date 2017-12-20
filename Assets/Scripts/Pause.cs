@@ -21,6 +21,7 @@ public class Pause : MonoBehaviour
 	public GameObject titleHud;
 	public Animator anim;
 	[HideInInspector] public bool animFinished = false;
+	public bool secondLife = false;
 	public RiseandShine riseScript;
 
 	public AudioSource bgmObject;
@@ -46,11 +47,21 @@ public class Pause : MonoBehaviour
 	{
 		//Set up our input. Also check if the player is currently alive, first. If not, we try and locate the player.
 		xboxStart = Input.GetButtonDown("Pause");
-		if (GameObject.FindWithTag("Player") == false)
-			{
-				player = GameObject.FindWithTag("Player");
-				anim = GameObject.FindWithTag("PlayerAnim").GetComponent<Animator>();
-			}
+		if (GameObject.FindWithTag("Player") == false || player == null)
+		{
+			player = GameObject.FindWithTag("Player");
+			secondLife = true;
+		}
+		if (player != null)
+		{
+			anim = player.gameObject.GetComponent<PlayerMove>().anim;
+			Debug.Log("Help");
+		}
+
+		if (secondLife)
+		{
+			anim.SetBool("SecondLife", true);
+		}
 
 		//If we aren't paused, pause. If we are, unpause.
 		if (xboxStart && paused == false && titleScreen == false)
