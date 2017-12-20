@@ -57691,7 +57691,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1218755314}
   m_LocalRotation: {x: -0.7071081, y: 0.7071056, z: 0.0000020042062, w: 0.0000021457672}
-  m_LocalPosition: {x: 482.85, y: 0.74, z: 0.17}
+  m_LocalPosition: {x: 487.85, y: 12.74, z: 0.17}
   m_LocalScale: {x: 0.5000005, y: 2.138332, z: 2.5000257}
   m_Children:
   - {fileID: 592878438}
@@ -63818,6 +63818,63 @@ Transform:
   m_Father: {fileID: 832964889}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1355139553
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 1716162447507114, guid: 27c56dc35333fe84e99cbff141bbcb58,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1355139554}
+  - component: {fileID: 1355139556}
+  - component: {fileID: 1355139555}
+  m_Layer: 0
+  m_Name: Game End
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1355139554
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 4724955034591254, guid: 27c56dc35333fe84e99cbff141bbcb58,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1355139553}
+  m_LocalRotation: {x: -0.008687114, y: -0.0080149565, z: -0.0035540147, w: 0.9999238}
+  m_LocalPosition: {x: 483.01, y: -8.41, z: 0.59}
+  m_LocalScale: {x: 1, y: 1.0000002, z: 0.9999999}
+  m_Children: []
+  m_Father: {fileID: 1822097632}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: -0.9990001, y: -0.915, z: -0.39900002}
+--- !u!114 &1355139555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1355139553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12e4521f413d75f4eb01755ecd87b908, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  endTrigger: {fileID: 1355139553}
+--- !u!65 &1355139556
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 65572835497902972, guid: 27c56dc35333fe84e99cbff141bbcb58,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1355139553}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.010310441, y: 1.6533473, z: 1}
+  m_Center: {x: 0.42367375, y: 0.32667625, z: 1.6880819e-10}
 --- !u!1 &1355275182
 GameObject:
   m_ObjectHideFlags: 0
