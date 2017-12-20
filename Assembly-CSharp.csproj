@@ -53,6 +53,7 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\AbilityManager.cs" />
      <Compile Include="Assets\Scripts\AbilityPickup.cs" />
+     <Compile Include="Assets\Scripts\DeathPuff.cs" />
      <Compile Include="Assets\Scripts\HangingRubbleOne.cs" />
      <Compile Include="Assets\Scripts\LedgeGrab.cs" />
      <Compile Include="Assets\Scripts\Level5Button.cs" />

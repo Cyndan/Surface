@@ -16534,6 +16534,11 @@ Transform:
   m_Father: {fileID: 1743310712}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &353206342 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4344361724976908, guid: 0e3bac5c546ac8844a013d31f270c809,
+    type: 2}
+  m_PrefabInternal: {fileID: 2017605666}
 --- !u!1 &354826073
 GameObject:
   m_ObjectHideFlags: 0
@@ -26773,11 +26778,6 @@ Transform:
   m_Father: {fileID: 1533489076}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &596590397 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1269986940552576, guid: 3967326b0f64d2b4eaafe68574dafdf1,
-    type: 2}
-  m_PrefabInternal: {fileID: 886506076}
 --- !u!95 &596590398 stripped
 Animator:
   m_PrefabParentObject: {fileID: 95696048189586788, guid: 3967326b0f64d2b4eaafe68574dafdf1,
@@ -41620,16 +41620,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 114589337740848432, guid: 3967326b0f64d2b4eaafe68574dafdf1,
+    - target: {fileID: 114335205402613814, guid: 3967326b0f64d2b4eaafe68574dafdf1,
         type: 2}
       propertyPath: pauseScript
       value: 
       objectReference: {fileID: 1588645277}
-    - target: {fileID: 114724066837045092, guid: 3967326b0f64d2b4eaafe68574dafdf1,
-        type: 2}
-      propertyPath: respawnScript
-      value: 
-      objectReference: {fileID: 515529062}
     - target: {fileID: 114360643965073564, guid: 3967326b0f64d2b4eaafe68574dafdf1,
         type: 2}
       propertyPath: WorldA
@@ -41640,26 +41635,16 @@ Prefab:
       propertyPath: WorldB
       value: 
       objectReference: {fileID: 1258018903}
-    - target: {fileID: 114335205402613814, guid: 3967326b0f64d2b4eaafe68574dafdf1,
+    - target: {fileID: 114724066837045092, guid: 3967326b0f64d2b4eaafe68574dafdf1,
+        type: 2}
+      propertyPath: respawnScript
+      value: 
+      objectReference: {fileID: 515529062}
+    - target: {fileID: 114589337740848432, guid: 3967326b0f64d2b4eaafe68574dafdf1,
         type: 2}
       propertyPath: pauseScript
       value: 
       objectReference: {fileID: 1588645277}
-    - target: {fileID: 114116686819740842, guid: 3967326b0f64d2b4eaafe68574dafdf1,
-        type: 2}
-      propertyPath: anim
-      value: 
-      objectReference: {fileID: 596590398}
-    - target: {fileID: 114116686819740842, guid: 3967326b0f64d2b4eaafe68574dafdf1,
-        type: 2}
-      propertyPath: model
-      value: 
-      objectReference: {fileID: 596590397}
-    - target: {fileID: 95500240195195752, guid: 3967326b0f64d2b4eaafe68574dafdf1,
-        type: 2}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3967326b0f64d2b4eaafe68574dafdf1, type: 2}
   m_IsPrefabParent: 0
@@ -49815,6 +49800,34 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1070317185}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1057260585
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1057260586}
+  m_Layer: 0
+  m_Name: PlayerTracer
+  m_TagString: Tracer
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1057260586
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1057260585}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 353206342}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1057332114

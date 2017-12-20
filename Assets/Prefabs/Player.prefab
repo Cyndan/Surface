@@ -2883,7 +2883,7 @@ Animator:
   m_GameObject: {fileID: 1420539167706386}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 89ad115e7ccedd747a3c11b82af4c64e, type: 3}
-  m_Controller: {fileID: 9100000, guid: 70387282cd4632d45a9ad2225b836233, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -3059,6 +3059,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   respawnScript: {fileID: 0}
+  deathPuff: {fileID: 1577466432391580, guid: a87f30f38643f9247a630d7f4b586f91, type: 2}
 --- !u!120 &120589792265534302
 LineRenderer:
   m_ObjectHideFlags: 1

@@ -11,6 +11,7 @@ TagManager:
   - WorldA
   - WorldB
   - PlayerAnim
+  - Tracer
   layers:
   - Default
   - TransparentFX
