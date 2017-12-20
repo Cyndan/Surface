@@ -44,28 +44,7 @@ public class WorldShift : MonoBehaviour {
 
 		//NOTE: Come back here and put Xbox Trigger support in when it doesn't give an error.
 		if ((Input.GetKeyDown(KeyCode.Q) == true || xboxLT > 0) && triggerPulled == false && canShift) {
-			triggerPulled = true;
-			canShift = false;
-			if (WorldActive == true) {
-				//Debug.Log ("Yeah the first command works");
-				WorldA.SetActive (false);
-				WorldB.SetActive (true);
-				WorldActive = false;
-			}
-
-			else {
-				//Debug.Log ("If you're seeing this, without hitting Q, you fucked up");
-				WorldA.SetActive (true);
-				WorldB.SetActive (false);
-				WorldActive = true;
-			}
-				
-			abiMan.Flash();
-			toShift = Time.time + shiftTimer;
-			abiMan.shiftBar = Time.time + shiftTimer;
-
-			abiMan.gameObject.GetComponent<AudioSource>().clip = flashSound;
-			abiMan.gameObject.GetComponent<AudioSource>().Play();
+			PhaseShift();
 		}
 
 		if (xboxLT == 0)
@@ -79,23 +58,30 @@ public class WorldShift : MonoBehaviour {
 		}
 	}
 
-	/*void PhaseShift () {
-		//NOTE: COME BACK HERE AND EDIT LEFT TRIGGER IN
-		if (Input.GetAxisRaw("XboxLT") > 0 || Input.GetKeyDown(KeyCode.Q) == true) {
-			if (WorldActive == true) {
-				Debug.Log ("Yeah the first comand works");
-				WorldA.SetActive (false);
-				WorldB.SetActive (true);
-				WorldActive = false;
-			}
-
-			if (WorldActive == false) {
-				Debug.Log ("If you're seeing this, without hitting Q, you fucked up");
-				WorldA.SetActive (true);
-				WorldB.SetActive (false);
-				WorldActive = true;
-			}
+	public void PhaseShift () 
+	 {
+		triggerPulled = true;
+		canShift = false;
+		if (WorldActive == true) {
+			//Debug.Log ("Yeah the first command works");
+			WorldA.SetActive (false);
+			WorldB.SetActive (true);
+			WorldActive = false;
 		}
 
-	}*/
+		else {
+			//Debug.Log ("If you're seeing this, without hitting Q, you fucked up");
+			WorldA.SetActive (true);
+			WorldB.SetActive (false);
+			WorldActive = true;
+		}
+
+		abiMan.Flash();
+		toShift = Time.time + shiftTimer;
+		abiMan.shiftBar = Time.time + shiftTimer;
+
+		abiMan.gameObject.GetComponent<AudioSource>().clip = flashSound;
+		abiMan.gameObject.GetComponent<AudioSource>().Play();
+
+	}
 }

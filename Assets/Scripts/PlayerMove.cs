@@ -15,6 +15,9 @@ public class PlayerMove : MonoBehaviour
 	public AudioClip landingPlants;
 	public WorldShift shift;
 
+	//Animation
+	public Animator anim;
+
 	//For setting up movement. Bool checks if player is touching ground or launched by grapple. Our rigidbody is referenced in Start().
 	//Launched must be public, as it is accessed by PlayerGrapple.cs
 	private Vector3 movement = Vector3.zero;
@@ -60,16 +63,20 @@ public class PlayerMove : MonoBehaviour
 				
 			//If the player isn't moving vertically, they are grounded and no longer launched. Else, they are not grounded. 
 			//This also checks if the last velocity was negative or 0, to prevent jumping again at the peak of a jump.
-			if(rb.velocity.y > -0.07 && rb.velocity.y < 0.07 && lastVel <= 0) 
+			if(rb.velocity.y > -1.3 && rb.velocity.y < 1.3 && lastVel <= 0) 
 			{
 				grounded = true;
+				anim.SetBool("Falling", false);
+				Debug.Log("landed");
 			}
 			else
 			{
 				grounded = false;
+				anim.SetBool("Falling", true);
+				Debug.Log("falling");
 			}
 
-			if (grounded && lastVel < -01.3 && !lastGrounded)
+			if (grounded && lastVel < -1.3 && !lastGrounded)
 			{
 				if (shift.WorldActive == true)
 				{
@@ -79,6 +86,7 @@ public class PlayerMove : MonoBehaviour
 				{
 					source.clip = landingPlants;
 				}
+				anim.SetTrigger("Land");
 				source.Play();
 			}
 
@@ -119,6 +127,7 @@ public class PlayerMove : MonoBehaviour
 		if (Input.GetButtonDown("XboxA") == true || Input.GetKeyDown(KeyCode.Space) == true)
 		{
 			rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+			anim.SetTrigger("Jump");
 		}
 	}
 
@@ -133,6 +142,14 @@ public class PlayerMove : MonoBehaviour
 		if (grounded && !grappling)
 		{
 			rb.velocity = movement;
+			if (moveHorizontal != 0.0f)
+			{
+				anim.SetBool("Running", true);
+			}
+			else
+			{
+				anim.SetBool("Running", false);
+			}
 		}
 		else
 		{

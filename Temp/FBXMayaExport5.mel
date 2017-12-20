@@ -1,8 +1,8 @@
 print "Starting maya loading and fbx conversion \n";
 	
-if (`file -q -exists "D:/Cyndan/DOCUME~1/Unity/Surface/Assets/Models/Water.mb"`)
+if (`file -q -exists "D:/Cyndan/DOCUME~1/Unity/Surface/Assets/Models/TEAM2_~1.MB"`)
 {		
-	file -o "D:/Cyndan/DOCUME~1/Unity/Surface/Assets/Models/Water.mb";
+	file -o "D:/Cyndan/DOCUME~1/Unity/Surface/Assets/Models/TEAM2_~1.MB";
 	FBXExportEmbeddedTextures -v false;
 	// FBXExportHardEdges -v true;
 	FBXExportApplyConstantKeyReducer -v false;

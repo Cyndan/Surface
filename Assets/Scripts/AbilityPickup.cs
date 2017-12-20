@@ -8,22 +8,13 @@ public class AbilityPickup : MonoBehaviour
 	public bool yellorb;
 	public AbilityManager manager;
 
-	void Start () 
-	{
-		
-	}
-	
-
-	void Update () 
-	{
-		
-	}
-
 	void OnCollisionEnter (Collision other)
 	{
 		if (redorb)
 		{
+			WorldShift shift = other.gameObject.GetComponent<WorldShift>();
 			manager.canShift = true;
+			shift.PhaseShift();
 		}
 
 		if (yellorb)

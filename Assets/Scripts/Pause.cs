@@ -6,8 +6,6 @@ using UnityEngine.UI;
 public class Pause : MonoBehaviour 
 {
 	public GameObject player;
-	//public GameObject model;
-	//public Transform neededRot;
 	private bool xboxStart;
 	public bool paused = false;
 	public GameObject pauseHud;
@@ -22,8 +20,8 @@ public class Pause : MonoBehaviour
 	private bool titleScreen = true;
 	public GameObject titleHud;
 	public Animator anim;
-	//public Animation animController;
 	[HideInInspector] public bool animFinished = false;
+	public RiseandShine riseScript;
 
 	public AudioSource bgmObject;
 	public AudioClip normalbgm;
@@ -51,6 +49,7 @@ public class Pause : MonoBehaviour
 		if (GameObject.FindWithTag("Player") == false)
 			{
 				player = GameObject.FindWithTag("Player");
+				anim = GameObject.FindWithTag("PlayerAnim").GetComponent<Animator>();
 			}
 
 		//If we aren't paused, pause. If we are, unpause.
@@ -72,11 +71,11 @@ public class Pause : MonoBehaviour
 		if (titleScreen == true && xboxStart)
 		{
 			sound.Play();
-			player.GetComponent<PlayerMove>().paused = false;
+			//player.GetComponent<PlayerMove>().paused = false;
+			riseScript.Rise();
 			titleScreen = false;
-			//titleHud.SetActive(false);
 			fadingOut = true;
-			//anim.SetTrigger("GetUp");
+			anim.SetTrigger("GetUp");
 
 			startTime = Time.time;
 			fadingScreen = true;
@@ -87,14 +86,12 @@ public class Pause : MonoBehaviour
 			ScreenFade();
 		}
 
-		/*//Play this once we finish our get up animation to start the game.
+		//Play this once we finish our get up animation to start the game.
 		if (animFinished)
 		{
 			player.GetComponent<PlayerMove>().paused = false;
-			model.GetComponent<Animator>().SetTrigger("Risen");
-			//model.transform.rotation = neededRot.rotation;
 			animFinished = false;
-		}*/
+		}
 
 
 		//AudioClip stuff.
