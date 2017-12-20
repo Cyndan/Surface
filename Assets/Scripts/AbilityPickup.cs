@@ -14,14 +14,16 @@ public class AbilityPickup : MonoBehaviour
 		{
 			WorldShift shift = other.gameObject.GetComponent<WorldShift>();
 			manager.canShift = true;
+			Destroy(gameObject);
 			shift.PhaseShift();
 		}
 
 		if (yellorb)
 		{
 			manager.canGrapple = true;
+			Destroy(gameObject);
 		}
 
-		Destroy(gameObject);
+
 	}
 }
